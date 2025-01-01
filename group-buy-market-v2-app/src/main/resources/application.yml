@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: group-buy-market-v2-app
+  profiles:
+    active: dev
