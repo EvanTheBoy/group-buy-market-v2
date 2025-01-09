@@ -1,4 +1,4 @@
-package com.evan.market.infrastructure.dao.po;
+package com.evan.market.domain.activity.model.valobj;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupBuyActivity {
-    /**
-    * 自增
-     */
-    private Long id;
+public class GroupBuyActivityDiscountVO {
     /*
     活动ID
      */
@@ -39,7 +35,7 @@ public class GroupBuyActivity {
     /*
     折扣ID
      */
-    private String discountId;
+    private GroupBuyDiscount groupBuyDiscount;
     /*
     拼团方式（0自动成团、1达成目标拼团）
      */
@@ -77,13 +73,34 @@ public class GroupBuyActivity {
      */
     private String tagScope;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class GroupBuyDiscount {
+        /**
+         * 折扣标题
+         */
+        private String discountName;
+        /**
+         * 折扣描述
+         */
+        private String discountDesc;
+        /**
+         * 折扣类型（0:base、1:tag）
+         */
+        private Byte discountType;
+        /**
+         * 营销优惠计划（ZJ:直减、MJ:满减、N元购）
+         */
+        private String marketPlan;
+        /**
+         * 营销优惠表达式
+         */
+        private String marketExpr;
+        /**
+         * 人群标签，特定优惠限定
+         */
+        private String tagId;
+    }
 }
