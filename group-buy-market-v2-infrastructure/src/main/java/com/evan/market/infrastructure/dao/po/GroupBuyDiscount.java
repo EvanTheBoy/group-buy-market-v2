@@ -19,7 +19,7 @@ public class GroupBuyDiscount {
     /**
      * 折扣ID
      */
-    private Long discountId;
+    private String discountId;
     /**
      * 折扣标题
      */
@@ -31,7 +31,7 @@ public class GroupBuyDiscount {
     /**
      * 折扣类型（0:base、1:tag）
      */
-    private String discountType;
+    private Byte discountType;
     /**
      * 营销优惠计划（ZJ:直减、MJ:满减、N元购）
      */
@@ -43,7 +43,7 @@ public class GroupBuyDiscount {
     /**
      * 人群标签，特定优惠限定
      */
-    private Long tagId;
+    private String tagId;
     /**
      * 创建时间
      */
