@@ -17,7 +17,7 @@ public class MarketProductEntity {
     /**
      * 商品ID
      */
-    private String productId;
+    private String goodsId;
     /**
      * 来源
      */
