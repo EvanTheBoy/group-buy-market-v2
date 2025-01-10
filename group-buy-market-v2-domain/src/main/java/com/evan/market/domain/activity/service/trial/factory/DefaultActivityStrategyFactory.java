@@ -2,6 +2,8 @@ package com.evan.market.domain.activity.service.trial.factory;
 
 import com.evan.market.domain.activity.model.entity.MarketProductEntity;
 import com.evan.market.domain.activity.model.entity.TrialBalanceEntity;
+import com.evan.market.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.evan.market.domain.activity.model.valobj.SkuVO;
 import com.evan.market.domain.activity.service.trial.node.RootNode;
 import com.evan.market.types.design.framework.tree.StrategyHandler;
 import lombok.AllArgsConstructor;
@@ -29,5 +31,8 @@ public class DefaultActivityStrategyFactory {
     @AllArgsConstructor
     public static class DynamicContext {
 
+        private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
+
+        private SkuVO skuVO;
     }
 }
