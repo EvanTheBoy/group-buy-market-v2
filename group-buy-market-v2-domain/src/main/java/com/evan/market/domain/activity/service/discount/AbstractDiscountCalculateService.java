@@ -7,8 +7,9 @@ import java.math.BigDecimal;
 public abstract class AbstractDiscountCalculateService implements IDiscountCalculateService {
     @Override
     public BigDecimal calculate(String userId, BigDecimal originalPrice, GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount) {
+
         return null;
     }
 
-    protected abstract BigDecimal doCalculate(GroupBuyActivityDiscountVO.GroupBuyDiscount discount);
+    protected abstract BigDecimal doCalculate(BigDecimal originalPrice, GroupBuyActivityDiscountVO.GroupBuyDiscount discount);
 }

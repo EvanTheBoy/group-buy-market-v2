@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 public class MJCalculateService extends AbstractDiscountCalculateService {
 
     @Override
-    protected BigDecimal doCalculate(GroupBuyActivityDiscountVO.GroupBuyDiscount discount) {
+    protected BigDecimal doCalculate(BigDecimal originalPrice, GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount) {
+        log.info("优惠策略折扣计算:{}", groupBuyDiscount.getDiscountType().getCode());
         return null;
     }
 }
