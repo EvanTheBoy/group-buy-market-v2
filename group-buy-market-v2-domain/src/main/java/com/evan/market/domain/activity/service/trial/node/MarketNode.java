@@ -5,6 +5,7 @@ import com.evan.market.domain.activity.model.entity.MarketProductEntity;
 import com.evan.market.domain.activity.model.entity.TrialBalanceEntity;
 import com.evan.market.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import com.evan.market.domain.activity.model.valobj.SkuVO;
+import com.evan.market.domain.activity.service.discount.IDiscountCalculateService;
 import com.evan.market.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.evan.market.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
 import com.evan.market.domain.activity.service.trial.thread.QueryGroupBuyActivityDiscountVOThreadTask;
@@ -26,6 +27,9 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     @Resource
     private EndNode endNode;
 
+    @Resource
+    private IDiscountCalculateService discountCalculateService;
+
     @Override
     protected void multiThread(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws InterruptedException, TimeoutException, ExecutionException {
         // First thread, 异步查询活动配置
@@ -46,6 +50,10 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     @Override
     public TrialBalanceEntity doApply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
         log.info("拼团商品查询试算服务-MarketNode userId:{} requestParameter:{}", requestParameter.getUserId(), JSON.toJSONString(requestParameter));
+        GroupBuyActivityDiscountVO groupBuyActivityDiscountVO = dynamicContext.getGroupBuyActivityDiscountVO();
+        GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount = groupBuyActivityDiscountVO.getGroupBuyDiscount();
+        SkuVO skuVO = dynamicContext.getSkuVO();
+
         return router(requestParameter, dynamicContext);
     }
 
