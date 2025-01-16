@@ -36,7 +36,7 @@ public class TagService implements ITagService {
         }
 
         // 5. 更新人群标签统计量
-        repository.updateCrowdTagsStatistics(tagId, userIdList);
+        repository.updateCrowdTagsStatistics(tagId, userIdList.size());
 
     }
 }
