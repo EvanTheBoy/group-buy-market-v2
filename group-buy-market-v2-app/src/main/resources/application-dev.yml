@@ -39,7 +39,7 @@ mybatis:
 redis:
   sdk:
     config:
-      host: 10.0.89.168
+      host: 10.0.88.211
       port: 16379
       pool-size: 10
       min-idle-size: 5
