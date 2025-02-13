@@ -1,11 +1,14 @@
 package com.evan.market.domain.activity.model.valobj;
 
+import com.evan.market.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -72,6 +75,37 @@ public class GroupBuyActivityDiscountVO {
      * 人群标签规则范围（多选；1可见限制、2参与限制）
      */
     private String tagScope;
+
+    /**
+     * 可见限制
+     * 只要存在这样一个值，那么首次获得的默认值就是 false
+     */
+    public boolean isVisible() {
+        if (StringUtils.isBlank(this.tagScope)) {
+            return TagScopeEnumVO.VISIBLE.getAllow();
+        }
+        String[] split = this.tagScope.split(Constants.SPLIT);
+        if (split.length > 0 && Objects.equals(split[0], "1") && StringUtils.isNotBlank(split[0])) {
+            return TagScopeEnumVO.VISIBLE.getRefuse();
+        }
+        return TagScopeEnumVO.VISIBLE.getAllow();
+    }
+
+    /**
+     * 参与限制
+     * 只要存在这样一个值，那么首次获得的默认值就是 false
+     */
+    public boolean isEnable() {
+        if (StringUtils.isBlank(this.tagScope)) {
+            return TagScopeEnumVO.ENABLE.getAllow();
+        }
+        String[] split = this.tagScope.split(Constants.SPLIT);
+        if (split.length == 2 && Objects.equals(split[0], "2") && StringUtils.isNotBlank(split[1])) {
+            return TagScopeEnumVO.ENABLE.getRefuse();
+        }
+        return TagScopeEnumVO.ENABLE.getAllow();
+    }
+
 
     @Data
     @Builder
